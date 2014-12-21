@@ -25,15 +25,15 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 app.use(methodOverride());
 
 // Create Model
-var toDo=mongoose.model('Todo',{text: String});
+var toDo=mongoose.model('Todo',{text: String, list: String});
 
 //Routes ======================
 
 //Get all ToDos 
-app.get('/api/todos',function(req,res){
+app.get('/api/todos/:selList',function(req,res){
 
 	//Get all TODOs using mongoose
-	toDo.find(function(err,todos){
+	toDo.find({list: req.params.selList},function(err,todos){
 		if (err)
 			res.send(err);
 
@@ -42,17 +42,19 @@ app.get('/api/todos',function(req,res){
 
 });
 
-app.post('/api/todos',function(req,res){
+app.post('/api/todos/:selList',function(req,res){
 	// Create a TODO
 	toDo.create({
-		text : req.body.text
+		text : req.body.text,
+		list : req.params.selList
 	}, function (err,todo){
 		if (err)
 			res.send(err);
 		//Get and return all TODOs after creating a new one
-		toDo.find(function(err,todos){
+		toDo.find({list: req.params.selList},function(err,todos){
 			if(err)
 				res.send(err)
+
 
 			res.json(todos);
 		});
@@ -61,13 +63,13 @@ app.post('/api/todos',function(req,res){
 
 // Delete a todo
 //TODO
-app.delete('/api/todos/:todo_id',function(req,res){
+app.delete('/api/todos/:selList/:todo_id',function(req,res){
 	console.log('delete called!');
 	toDo.remove({_id : req.params.todo_id}, function(err,todo){ //figure out how remove works 
 		if (err)
 			res.send(err);
 		// if not an error in removing then reload list
-		toDo.find(function(err,todos){
+		toDo.find({list:req.params.selList},function(err,todos){
 			if (err)
 				res.send(err);
 
@@ -86,8 +88,8 @@ app.get('/public/:file',function(req,res){
 });*/
 
 //Listen and start app
-var port=8080;
-app.listen(process.env.PORT || 5000,function(){
+var port=process.env.PORT || 9000;
+app.listen(port,function(){
 	console.log("Listening on port "+port);
 });
 
