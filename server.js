@@ -78,14 +78,10 @@ app.delete('/api/todos/:selList/:todo_id',function(req,res){
 	});
 });
 
-//Send App main page
+//Send main application page
 app.get('*',function(req,res){
 	res.sendfile('./public/index.html'); //Angular will handle dynamic content
 });
-/*
-app.get('/public/:file',function(req,res){
-	res.sendfile('./public/'+req.params.file);
-});*/
 
 //Listen and start app
 var port=process.env.PORT || 9000;

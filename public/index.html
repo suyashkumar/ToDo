@@ -18,11 +18,15 @@
         </div>
 
         <div class="todo-manager">
-            <!--List Selection-->
+            <!--List Selection and addition-->
             <div class="col-sm-2 text-center">
                 <div class="list-group">
                     <a href="#" class="list-group-item" ng-class="{active:$index==selectedIndex}" ng-click="toggler($index)" ng-repeat="item in list1">{{item}}</a>
                 </div>
+                <form>
+                <input type="text" class="form-control input-lg text-center" placeholder="New List" ng-model="newList.text">
+                <button type="submit" class="btn-success btn btn-lg" ng-click="createList()" style="margin-top:10px; visibility:hidden;">Add</button>
+                </form>
             </div> 
             <!--Add Todos (form)-->
             <form>
@@ -37,7 +41,7 @@
         </div>
 
         <div class="todo-holder col-sm-4 col-sm-offset-2 well">
-            <span class="text-center"><h2>TODO:</h2></span>
+            <span class="text-center"><h2>{{list1[selectedIndex]}}</h2></span>
             <div class="checkbox" ng-repeat="todo in todos">
                         <label>
                             <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}

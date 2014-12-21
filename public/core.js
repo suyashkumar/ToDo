@@ -42,6 +42,13 @@ function mainController($scope, $http){
 		refreshToDos($scope,$http);
 	}
 
+	// This function creates a new list 
+	$scope.createList=function(){
+		$scope.list1.push($scope.newList.text);
+		$scope.newList.text="";
+
+	}
+
 }
 
 function refreshToDos($scope,$http){
