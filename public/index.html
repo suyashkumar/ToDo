@@ -1,0 +1,49 @@
+<html ng-app="simpleTodo">
+<head>
+    <!-- Links! -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+        <script src="angular.min.js"></script><!-- load angular -->
+        <script src="core.js"></script>
+        <style>
+            .todo-holder {margin-top:40px;}
+        </style>
+</head>
+
+<body ng-controller="mainController">
+    <div class="container">
+        <div class="jumbotron text-center">
+            <h1>Simple ToDo Manager</h1>
+            Remaining: <span class="label label-info"> {{todos.length}}</span>
+        </div>
+
+        <div class="todo-manager">
+            <!--List Selection-->
+            <div class="col-sm-2 text-center">
+                <div class="list-group">
+                    <a href="#" class="list-group-item" ng-class="{active:$index==selectedIndex}" ng-click="toggler($index)" ng-repeat="item in list1">{{item}}</a>
+                </div>
+            </div> 
+            <!--Add Todos (form)-->
+            <form>
+            <div class="col-sm-8 text-center">
+                <input type="text" class="form-control input-lg text-center" ng-model="formData.text" placeholder="New Task">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-success btn-lg" ng-click="createTodo()">Add Task</button>
+            </div>
+            </form>
+            
+        </div>
+
+        <div class="todo-holder col-sm-4 col-sm-offset-2 well">
+            <span class="text-center"><h2>TODO:</h2></span>
+            <div class="checkbox" ng-repeat="todo in todos">
+                        <label>
+                            <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+                        </label>
+                    </div>
+        </div>
+    </div>
+</body>
+</html>
