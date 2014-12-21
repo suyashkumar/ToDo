@@ -16,7 +16,7 @@ var bodyParser = require('body-parser'); //Parse info from POST
 
 var methodOverride=require('method-override'); //simulate DELETE and PUT
 
-mongoose.connect('mongodb://localhost/'); //connect to local mongodb database
+mongoose.connect('mongodb://test:test1@ds027751.mongolab.com:27751/todo-test'); //connect to local mongodb database
 app.use(express.static(__dirname + '/public')); // This sets local relative links for front end
 app.use(morgan('dev')); //Log all requests to console
 app.use(bodyParser.urlencoded({"extended":'true'}));
