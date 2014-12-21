@@ -86,7 +86,7 @@ app.get('/public/:file',function(req,res){
 });*/
 
 //Listen and start app
-var port=9000;
+var port=8080;
 app.listen(port,function(){
 	console.log("Listening on port "+port);
 });
