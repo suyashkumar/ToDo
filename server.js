@@ -1,6 +1,6 @@
 /*
 server.js 
-Server for the TODO application. 
+Server for the basic todo application. 
 */
 
 // Init ======================
@@ -62,7 +62,6 @@ app.post('/api/todos/:selList',function(req,res){
 });
 
 // Delete a todo
-//TODO
 app.delete('/api/todos/:selList/:todo_id',function(req,res){
 	console.log('delete called!');
 	toDo.remove({_id : req.params.todo_id}, function(err,todo){ //figure out how remove works 
